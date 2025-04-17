@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Service>
+
+<h2>Услуги</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h3>@item.Title</h3>
+        <img src="@item.Img" alt="@item.Title" width="200" />
+        <p>@item.Description</p>
+    </div>
+}

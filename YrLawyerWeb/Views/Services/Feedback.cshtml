@@ -1,0 +1,24 @@
+﻿@{
+    var service = ViewBag.Service as Service;
+}
+
+<h2>Отзывы по услуге: @service.Title</h2>
+
+@foreach (var f in service.Feedbacks)
+{
+    <div>
+        <strong>@f.Client.FirstName @f.Client.LastName</strong> — @f.Stars ★
+        <p>@f.Message</p>
+        <small>@f.DateCreated.ToShortDateString()</small>
+    </div>
+}
+
+<h3>Оставить отзыв</h3>
+
+<form method="post">
+    <input type="hidden" name="serviceId" value="@service.Id" />
+    <p>Email: <input type="email" name="email" /></p>
+    <p>Оценка (1–5): <input type="number" name="stars" min="1" max="5" /></p>
+    <p>Сообщение: <textarea name="message"></textarea></p>
+    <button type="submit">Отправить</button>
+</form>

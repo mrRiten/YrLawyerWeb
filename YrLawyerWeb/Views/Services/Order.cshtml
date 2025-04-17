@@ -1,0 +1,27 @@
+﻿@{
+    var services = ViewBag.Services as List<Service>;
+    int selectedId = ViewBag.SelectedServiceId;
+}
+
+@removeTagHelper "Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+
+<h2>Запись на услугу</h2>
+
+<form method="post">
+    <p>Услуга:
+        <select name="serviceId">
+            @foreach (var s in services)
+            {
+                <option value="@s.Id" @(s.Id == selectedId ? "selected" : "")>@s.Title</option>
+            }
+        </select>
+    </p>
+    <p>Дата посещения: <input type="date" name="visitDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" /></p>
+    <p>Фамилия: <input type="text" name="lastName" /></p>
+    <p>Имя: <input type="text" name="firstName" /></p>
+    <p>Отчество: <input type="text" name="middleName" /></p>
+    <p>Email: <input type="email" name="email" /></p>
+    <p>Телефон: <input type="text" name="phone" /></p>
+    <button type="submit">Отправить</button>
+</form>

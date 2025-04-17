@@ -1,0 +1,31 @@
+﻿@model List<Feedback>
+
+<h2>Отзывы клиентов</h2>
+
+@foreach (var f in Model)
+{
+    <div style="margin-bottom: 20px;">
+        <strong>@f.Client.FirstName @f.Client.LastName</strong> — @f.Stars ★
+        <p><em>Услуга: @f.Service.Title</em></p>
+        <p>@f.Message</p>
+        <small>@f.DateCreated.ToShortDateString()</small>
+    </div>
+}
+
+<h3>Оставить отзыв</h3>
+
+<form method="post" action="@Url.Action("AddFeedback", "Services")">
+    <p>
+        Услуга:
+        <select name="serviceId">
+            @foreach (var s in ViewBag.Services as List<Service>)
+            {
+                <option value="@s.Id">@s.Title</option>
+            }
+        </select>
+    </p>
+    <p>Email: <input type="email" name="email" required /></p>
+    <p>Оценка (1–5): <input type="number" name="stars" min="1" max="5" required /></p>
+    <p>Сообщение: <textarea name="message" required></textarea></p>
+    <button type="submit">Отправить</button>
+</form>
