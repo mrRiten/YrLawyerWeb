@@ -1,14 +1,110 @@
-﻿@model List<Service>
-
-<h2>Все услуги</h2>
-
-@foreach (var item in Model)
-{
-    <div>
-        <h3>@item.Title</h3>
-        <img src="@item.Img" width="200" />
-        <p>@item.Description</p>
-        <a href="@Url.Action("Order", new { id = item.Id })">Записаться</a> |
-        <a href="@Url.Action("Feedback", new { id = item.Id })">Отзывы</a>
-    </div>
+﻿@{
+    ViewData["Title"] = "Услуги";
 }
+
+@model List<Service>
+
+<section class="services">
+    <div class="container">
+        <div class="wrapper">
+
+            <h2 class="title">Наши услуги</h2>
+
+            <div class="cards">
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <img class="img" src="~/img/@item.Img" alt="@item.Title" />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">@item.Title</h3>
+                            <p class="desc">@item.Description</p>
+                            <div class="card-links">
+                                <a class="link" href="@Url.Action("Order", new { id = item.Id })">Записаться</a>
+                                <a class="link" href="@Url.Action("Feedback", new { id = item.Id })">Отзывы</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .services {
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+        .services .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .services .title {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .services .cards {
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            font-family: 'KoPub Batang';
+        }
+
+        .services .card {
+            display: flex;
+            gap: 20px;
+        }
+
+        .services .card-content{
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .services .img-wrapper {
+            min-width: 360px;
+        }
+
+
+        .services .img {
+            border: #132D65 4px solid;
+            border-radius: 20px;
+        }
+
+        .services .desc {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .services .card-title {
+            margin-top: 15px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .services .card-links{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .services .link {
+            font-size: 16px;
+            border: #132D65 4px solid;
+            border-radius: 20px;
+            padding: 5px 10px 10px 10px;
+            align-self: start;
+            font-weight: 600;
+        }
+</style>

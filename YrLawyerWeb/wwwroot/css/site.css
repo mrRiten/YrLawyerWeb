@@ -1,22 +1,89 @@
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #fff;
+    color: #132D65;
+    font-family: 'Lack', sans-serif;
+}
+
+html,
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.footer {
+    padding: 60px 0;
+    background-color: #e3e3e3;
+}
+
+.container {
+    padding: 0 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+.header {
+    padding-top: 20px;
+}
+
+.header__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.header__logo {
+    font-size: 48px;
+    font-family: 'JOURNALISM';
+}
+
+.header__menu {
+    display: flex;
+    gap: 60px;
+    padding: 15px 50px 10px 30px;
+    font-size: 20px;
+    color: white;
+    background-color: #132D65;
+    text-transform: uppercase;
+    font-family: 'KoPub Batang';
+}
+
+.footer {
+    background-color: #132D65;
+    padding: 20px 30px 30px 30px;
+    color: #fff;
+}
+
+.footer__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__logo {
+    font-size: 48px;
+    font-family: 'JOURNALISM';
+    
+}
+.footer__social{
+    display: flex;
+    gap:10px;
+}
+
+.footer__contacts {
+    display: flex;
+    gap: 50px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 15px;
 }
