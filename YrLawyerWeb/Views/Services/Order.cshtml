@@ -1,30 +1,118 @@
 ﻿@{
-    ViewData["Title"] = "Услуги";
-
-
+    ViewData["Title"] = "Запись на услугу";
     var services = ViewBag.Services as List<Service>;
     int selectedId = ViewBag.SelectedServiceId;
 }
 
 @removeTagHelper "Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers"
 
+<section class="booking">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Запись на услугу</h2>
+            <form method="post" class="booking-form">
+                <div class="form-group">
+                    <label class="label" for="serviceId">Услуга</label>
+                    <select name="serviceId" id="serviceId" class="input">
+                        @foreach (var s in services)
+                        {
+                            <option value="@s.Id" @(s.Id == selectedId ? "selected" : "")>@s.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="label" for="visitDate">Дата посещения</label>
+                    <input type="date" name="visitDate" id="visitDate" class="input" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="lastName">Фамилия</label>
+                    <input type="text" name="lastName" id="lastName" class="input" />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="firstName">Имя</label>
+                    <input type="text" name="firstName" id="firstName" class="input" />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="middleName">Отчество</label>
+                    <input type="text" name="middleName" id="middleName" class="input" />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="email">Email</label>
+                    <input type="email" name="email" id="email" class="input" />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="phone">Телефон</label>
+                    <input type="text" name="phone" id="phone" class="input" />
+                </div>
+                <button type="submit" class="submit-button">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-<h2>Запись на услугу</h2>
+<style>
+    .booking {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
 
-<form method="post">
-    <p>Услуга:
-        <select name="serviceId">
-            @foreach (var s in services)
-            {
-                <option value="@s.Id" @(s.Id == selectedId ? "selected" : "")>@s.Title</option>
-            }
-        </select>
-    </p>
-    <p>Дата посещения: <input type="date" name="visitDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" /></p>
-    <p>Фамилия: <input type="text" name="lastName" /></p>
-    <p>Имя: <input type="text" name="firstName" /></p>
-    <p>Отчество: <input type="text" name="middleName" /></p>
-    <p>Email: <input type="email" name="email" /></p>
-    <p>Телефон: <input type="text" name="phone" /></p>
-    <button type="submit">Отправить</button>
-</form>
+        .booking .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .booking .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+    .booking-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .input,
+    select {
+        padding: 10px;
+        font-size: 16px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+</style>
