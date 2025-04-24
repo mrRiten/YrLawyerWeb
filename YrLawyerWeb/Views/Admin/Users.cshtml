@@ -1,0 +1,26 @@
+﻿@model List<User>
+<h2>Пользователи</h2>
+
+<form asp-action="CreateUser" method="post">
+    <input name="Email" placeholder="Email" />
+    <input name="Password" placeholder="Пароль" />
+    <button type="submit">Добавить</button>
+</form>
+
+<table>
+    <tr><th>ID</th><th>Email</th><th>Пароль</th><th></th></tr>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <form asp-action="EditUser" method="post">
+            <td><input name="Id" value="@u.Id" readonly /></td>
+            <td><input name="Email" value="@u.Login" /></td>
+            <td><input name="Password" value="@u.Password" /></td>
+            <td>
+                <button type="submit">Сохранить</button>
+                <a href="/Admin/DeleteUser/@u.Id">Удалить</a>
+            </td>
+            </form>
+        </tr>
+    }
+</table>

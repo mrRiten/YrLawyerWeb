@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using YrLawyerWeb.Models;
 using YrLawyerWeb.Services;
 
 namespace YrLawyerWeb.Controllers
 {
+    [Authorize]
     public class AuthController(YrLawyerContext context, JwtService jwtService) : Controller
     {
         private readonly YrLawyerContext _context = context;

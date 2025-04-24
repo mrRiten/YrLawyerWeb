@@ -1,0 +1,28 @@
+﻿@model List<Service>
+<h2>Услуги</h2>
+
+<form asp-action="CreateService" method="post">
+    <input name="Title" placeholder="Название" />
+    <input name="Description" placeholder="Описание" />
+    <input name="ImagePath" placeholder="Путь к изображению" />
+    <button type="submit">Добавить</button>
+</form>
+
+<table>
+    <tr><th>Название</th><th>Описание</th><th>Картинка</th><th></th></tr>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <form asp-action="EditService" method="post">
+                <input type="hidden" name="Id" value="@s.Id" />
+            <td><input name="Title" value="@s.Title" /></td>
+            <td><input name="Description" value="@s.Description" /></td>
+            <td><input name="ImagePath" value="@s.Img" /></td>
+            <td>
+                <button type="submit">Сохранить</button>
+                <a href="/Admin/DeleteService/@s.Id">Удалить</a>
+            </td>
+            </form>
+        </tr>
+    }
+</table>

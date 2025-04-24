@@ -1,0 +1,28 @@
+﻿@model List<ClientService>
+<h2>Записи на услуги</h2>
+
+<form asp-action="CreateClientService" method="post">
+    <input name="ClientId" placeholder="ID клиента" />
+    <input name="ServiceId" placeholder="ID услуги" />
+    <input name="DateRequested" type="date" />
+    <button type="submit">Добавить</button>
+</form>
+
+<table>
+    <tr><th>Клиент</th><th>Услуга</th><th>Дата</th><th></th></tr>
+    @foreach (var cs in Model)
+    {
+        <tr>
+            <form asp-action="EditClientService" method="post">
+                <input type="hidden" name="Id" value="@cs.Id" />
+            <td><input name="ClientId" value="@cs.ClientId" /></td>
+            <td><input name="ServiceId" value="@cs.ServiceId" /></td>
+            <td><input name="DateRequested" type="date" value="@cs.DateRequested.ToString("yyyy-MM-dd")" /></td>
+            <td>
+                <button type="submit">Сохранить</button>
+                <a href="/Admin/DeleteClientService/@cs.Id">Удалить</a>
+            </td>
+            </form>
+        </tr>
+    }
+</table>

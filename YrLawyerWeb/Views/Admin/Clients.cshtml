@@ -1,0 +1,30 @@
+﻿@model List<Client>
+<h2>Клиенты</h2>
+
+<form asp-action="CreateClient" method="post">
+    <input name="LastName" placeholder="Фамилия" />
+    <input name="FirstName" placeholder="Имя" />
+    <input name="MiddleName" placeholder="Отчество" />
+    <input name="Email" placeholder="Email" />
+    <input name="Phone" placeholder="Телефон" />
+    <button type="submit">Добавить</button>
+</form>
+
+<table>
+    <tr><th>ФИО</th><th>Email</th><th>Телефон</th><th></th></tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <form asp-action="EditClient" method="post">
+                <input type="hidden" name="Id" value="@c.Id" />
+            <td><input name="LastName" value="@c.LastName" /> <input name="FirstName" value="@c.FirstName" /> <input name="MiddleName" value="@c.MiddleName" /></td>
+            <td><input name="Email" value="@c.Email" /></td>
+            <td><input name="Phone" value="@c.Phone" /></td>
+            <td>
+                <button type="submit">Сохранить</button>
+                <a href="/Admin/DeleteClient/@c.Id">Удалить</a>
+            </td>
+            </form>
+        </tr>
+    }
+</table>

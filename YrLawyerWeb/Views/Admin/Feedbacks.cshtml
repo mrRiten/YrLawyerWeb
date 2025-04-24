@@ -1,0 +1,30 @@
+﻿@model List<Feedback>
+<h2>Отзывы</h2>
+
+<form asp-action="CreateFeedback" method="post">
+    <input name="ClientId" placeholder="ID клиента" />
+    <input name="ServiceId" placeholder="ID услуги" />
+    <input name="Text" placeholder="Текст отзыва" />
+    <input name="Rating" type="number" min="1" max="5" />
+    <button type="submit">Добавить</button>
+</form>
+
+<table>
+    <tr><th>Клиент</th><th>Услуга</th><th>Текст</th><th>Оценка</th><th></th></tr>
+    @foreach (var f in Model)
+    {
+        <tr>
+            <form asp-action="EditFeedback" method="post">
+                <input type="hidden" name="Id" value="@f.Id" />
+            <td><input name="ClientId" value="@f.ClientId" /></td>
+            <td><input name="ServiceId" value="@f.ServiceId" /></td>
+            <td><input name="Text" value="@f.Message" /></td>
+            <td><input name="Rating" type="number" value="@f.Stars" min="1" max="5" /></td>
+            <td>
+                <button type="submit">Сохранить</button>
+                <a href="/Admin/DeleteFeedback/@f.Id">Удалить</a>
+            </td>
+            </form>
+        </tr>
+    }
+</table>
