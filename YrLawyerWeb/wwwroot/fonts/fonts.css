@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Lack';
+    src: local('Lack'),
+        url('subset-Lack.woff2') format('woff2'),
+        url('subset-Lack.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JOURNALISM';
+    src: local('JOURNALISM'),
+        url('subset-JOURNALISM.woff2') format('woff2'),
+        url('subset-JOURNALISM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KoPub Batang';
+    src: local('KoPubBatang Regular'), local('KoPubBatang-Regular'),
+        url('subset-KoPubBatang-Regular.woff2') format('woff2'),
+        url('subset-KoPubBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

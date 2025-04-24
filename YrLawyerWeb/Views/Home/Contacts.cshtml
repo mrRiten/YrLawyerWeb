@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Контакты";
+}
+
+<section class="contacts">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Контакты</h2>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="label">Телефон:</span>
+                    <a href="tel:+74852664939" class="value">+7 (4852) 66-49-39</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">Городской телефон:</span>
+                    <a href="tel:+79206649393" class="value">+7 920 664-93-93</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">Email:</span>
+                    <a href="mailto:info@yaroslavskiyrist.ru" class="value">info@yaroslavskiyrist.ru</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">VK:</span>
+                    <a href="https://vk.com/group/yaryristru" target="_blank" class="value">vk.com/group/yaryristru</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">Telegram:</span>
+                    <a href="https://t.me/yaryristru" target="_blank" class="value">yaryristru</a>
+                </div>
+                <div class="contact-item">
+                    <span class="label">Адрес:</span>
+                    <span class="value">ул. Трефолева, 12, Ярославль, Ярославская обл., 150000</span>
+                </div>
+            </div>
+
+            <div class="map-wrapper">
+                <h3 class="subtitle">Мы на карте</h3>
+                <div class="map-placeholder">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4674dad359026a31b501e75ddcfa4fff5e7d7c8f3a4f5b06b47945dce9cf92d0&amp;source=constructor" width="639" height="513" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .contacts {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+        .contacts .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .contacts .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 15px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #132D65;
+    }
+
+    .value {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        text-decoration: none;
+    }
+
+        .value:hover {
+            text-decoration: underline;
+            color: #132D65;
+        }
+
+    .map-wrapper {
+        width: 100%;
+        max-width: 800px;
+        margin-top: 20px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .map-placeholder iframe {
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+    }
+
+</style>

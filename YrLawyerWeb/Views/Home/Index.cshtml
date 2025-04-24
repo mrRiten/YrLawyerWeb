@@ -1,16 +1,143 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
 @model List<Service>
 
-<h2>Услуги</h2>
-
-@foreach (var item in Model)
-{
-    <div>
-        <h3>@item.Title</h3>
-        <img src="@item.Img" alt="@item.Title" width="200" />
-        <p>@item.Description</p>
+<section class="general">
+    <div class="container">
+        <h1 class="title">Ведущая юридическая компания</h1>
+        <p class="text">
+            Сегодня "Ярославский Юрист" является одной из ведущих юридических
+            компаний в Ярославле. В штате компании работают более 20
+            квалифицированных юристов, имеющих опыт работы в различных областях
+            права. Компания продолжает развиваться, внедряя новые технологии и
+            методы работы для повышения эффективности и качества обслуживания
+            клиентов.
+        </p>
     </div>
-}
+</section>
+
+<section class="services">
+    <div class="container">
+        <div class="wrapper">
+
+            <h2 class="title">Наши услуги</h2>
+
+            <div class="cards">
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <img class="img" src="~/img/@item.Img" alt="@item.Title" />
+                        </div>
+                        <h3 class="card-title">@item.Title</h3>
+                    </div>
+                }
+            </div>
+        
+
+            <a class="link" href="@Url.Action("Index", "Services")">Записаться</a>
+        </div>
+    </div>
+</section>
+
+<section class="clients">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Клиентам</h2>
+
+            <p class="text">
+                Наша компания предлагает услуги различным категориям клиентов:
+                Частные лица: Получите помощь в решении личных юридических вопросов, таких как развод, наследство, трудовые споры и иммиграционные вопросы.
+                Предприниматели: Мы помогаем в создании и регистрации компании, вопросах налогообложения и защите прав в деловых спорах.
+                Крупные корпорации: Наша команда предоставляет высококвалифицированную юридическую поддержку при ведении международного бизнеса и сложных юридических вопросах.
+            </p>
+        </div>
+    </div>
+</section>
+<style>
+    .general {
+        margin-top: 50px;
+    }
+
+        .general .title {
+            font-size: 32px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .general .text {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+    .services {
+        margin-top: 30px;
+    }
+
+        .services .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .services .title
+        {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .services .cards {
+            margin-top: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 16px;
+            font-family: 'KoPub Batang';
+        }
+
+        .services .img-wrapper {
+            max-width: 320px;
+        }
+
+        .services .img {
+            border: #132D65 4px solid;
+            border-radius: 20px;
+        }
+
+        .services .card-title{
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .services .link{
+            font-size: 24px;
+            border: #132D65 4px solid;
+            border-radius: 20px;
+            padding: 5px 10px 10px 10px;
+            align-self: center;
+        }
+
+
+    .clients{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+        .clients .title {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .clients .text {
+            margin-top: 5px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+</style>

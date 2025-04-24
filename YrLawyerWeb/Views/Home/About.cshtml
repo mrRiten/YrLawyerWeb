@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "О компании";
+}
+
+<section class="about">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">О компании</h2>
+
+            <div class="images">
+                <div class="img-wrapper">
+                    <img class="img" src="~/img/about1.jpg" alt="Наша команда" />
+                </div>
+                <div class="img-wrapper">
+                    <img class="img" src="~/img/about2.jpg" alt="Наш офис" />
+                </div>
+            </div>
+
+            <div class="content">
+                <h3 class="subtitle">Целевая Аудитория</h3>
+                <p class="text">
+                    Наша компания предлагает услуги различным категориям клиентов:
+                </p>
+                <ul class="list">
+                    <li><strong>Частные лица:</strong> Получите помощь в решении личных юридических вопросов, таких как развод, наследство, трудовые споры и иммиграционные вопросы.</li>
+                    <li><strong>Предприниматели:</strong> Мы помогаем в создании и регистрации компании, вопросах налогообложения и защите прав в деловых спорах.</li>
+                    <li><strong>Крупные корпорации:</strong> Наша команда предоставляет высококвалифицированную юридическую поддержку при ведении международного бизнеса и сложных юридических вопросах.</li>
+                </ul>
+
+                <h3 class="subtitle">Боли и Страхи Клиентов</h3>
+                <p class="text">
+                    Мы понимаем, что наши клиенты часто сталкиваются с:
+                </p>
+                <ul class="list">
+                    <li>Несвоевременной реакцией на запросы и отсутствием информации о текущем состоянии дела.</li>
+                    <li>Непонятным общением с юристами и сложными юридическими терминами.</li>
+                    <li>Страхом перед высокими расходами и длительностью процесса решения юридических вопросов.</li>
+                    <li>Страхом перед недобросовестными юридическими компаниями.</li>
+                </ul>
+
+                <h3 class="subtitle">Как Мы Решаем Эти Проблемы</h3>
+                <ul class="list">
+                    <li><strong>Персонализированный подход:</strong> Каждый клиент получает индивидуальное внимание и решение, адаптированное к его потребностям.</li>
+                    <li><strong>Высокий уровень экспертизы:</strong> Наши юристы регулярно повышают квалификацию и участвуют в профессиональных конференциях.</li>
+                    <li><strong>Прозрачность и ответственность:</strong> Мы гарантируем соблюдение договоренностей и берём на себя ответственность за результат.</li>
+                    <li><strong>Безопасность данных:</strong> Мы обеспечиваем конфиденциальность и безопасность данных наших клиентов.</li>
+                </ul>
+
+                <h3 class="subtitle">Услуги</h3>
+                <ul class="list">
+                    <li><strong>Гражданское право:</strong> Защита прав потребителей, наследственные споры, семейное право.</li>
+                    <li><strong>Корпоративное право:</strong> Регистрация и ликвидация компаний, корпоративные споры.</li>
+                    <li><strong>Налоговое консультирование:</strong> Оптимизация налоговых расходов, налоговые споры.</li>
+                    <li><strong>Интеллектуальная собственность:</strong> Регистрация и защита патентов, товарных знаков.</li>
+                </ul>
+
+                <h3 class="subtitle">Почему Выберите Нас?</h3>
+                <ul class="list">
+                    <li><strong>Опыт и квалификация:</strong> Более 20 квалифицированных юристов с опытом работы в различных областях права.</li>
+                    <li><strong>Персонализированный подход:</strong> Мы понимаем и решаем проблемы каждого клиента индивидуально.</li>
+                    <li><strong>Современные технологии:</strong> Мы используем передовые информационные системы для оптимизации процессов и повышения эффективности работы.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about {
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+    }
+
+        .about .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .about .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .img-wrapper {
+        max-width: 320px;
+    }
+
+    .img {
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        width: 100%;
+        height: auto;
+    }
+
+    .content {
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        text-align: left;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .text {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+        .list li {
+            padding-left: 20px;
+            position: relative;
+        }
+
+            .list li:before {
+                content: '•';
+                position: absolute;
+                left: 0;
+                color: #132D65;
+                font-size: 20px;
+            }
+
+            .list li strong {
+                font-weight: 600;
+            }
+</style>

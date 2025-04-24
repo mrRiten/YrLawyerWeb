@@ -19,6 +19,8 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSet
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
+builder.Services.AddScoped<JwtService>();
+
 builder.Services
     .AddAuthentication(options =>
     {

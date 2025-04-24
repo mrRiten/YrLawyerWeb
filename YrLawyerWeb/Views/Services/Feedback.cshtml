@@ -1,24 +1,173 @@
 ﻿@{
+    ViewData["Title"] = "Отзыв";
     var service = ViewBag.Service as Service;
 }
 
-<h2>Отзывы по услуге: @service.Title</h2>
+<section class="feedback">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Отзывы по услуге: @service.Title</h2>
 
-@foreach (var f in service.Feedbacks)
-{
-    <div>
-        <strong>@f.Client.FirstName @f.Client.LastName</strong> — @f.Stars ★
-        <p>@f.Message</p>
-        <small>@f.DateCreated.ToShortDateString()</small>
+            <div class="feedback-list">
+                @foreach (var f in service.Feedbacks)
+                {
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <strong class="client-name">@f.Client.FirstName @f.Client.LastName</strong>
+                            <span class="stars">@f.Stars ★</span>
+                        </div>
+                        <p class="message">@f.Message</p>
+                        <small class="date">@f.DateCreated.ToShortDateString()</small>
+                    </div>
+                }
+            </div>
+
+            <h3 class="subtitle">Оставить отзыв</h3>
+
+            <form method="post" class="feedback-form">
+                <input type="hidden" name="serviceId" value="@service.Id" />
+                <div class="form-group">
+                    <label class="label" for="email">Email</label>
+                    <input type="email" name="email" id="email" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="stars">Оценка (1–5)</label>
+                    <input type="number" name="stars" id="stars" min="1" max="5" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="message">Сообщение</label>
+                    <textarea name="message" id="message" class="input textarea" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Отправить</button>
+            </form>
+        </div>
     </div>
-}
+</section>
 
-<h3>Оставить отзыв</h3>
+<style>
+    .feedback {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
 
-<form method="post">
-    <input type="hidden" name="serviceId" value="@service.Id" />
-    <p>Email: <input type="email" name="email" /></p>
-    <p>Оценка (1–5): <input type="number" name="stars" min="1" max="5" /></p>
-    <p>Сообщение: <textarea name="message"></textarea></p>
-    <button type="submit">Отправить</button>
-</form>
+        .feedback .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .feedback .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+        .feedback .subtitle {
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+            margin-top: 20px;
+        }
+
+    .feedback-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .feedback-item {
+        padding: 15px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+    }
+
+    .feedback-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .client-name {
+        font-size: 18px;
+        font-weight: 600;
+        font-family: 'KoPub Batang';
+    }
+
+    .stars {
+        font-size: 16px;
+        color: #132D65;
+    }
+
+    .message {
+        font-size: 16px;
+        font-family: 'KoPub Batang';
+        margin-bottom: 10px;
+    }
+
+    .date {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .feedback-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'KoPub Batang';
+    }
+
+    .input,
+    .textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        font-family: 'KoPub Batang';
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        font-family: 'KoPub Batang';
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+</style>
