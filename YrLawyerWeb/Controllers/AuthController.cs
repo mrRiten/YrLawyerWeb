@@ -5,7 +5,6 @@ using YrLawyerWeb.Services;
 
 namespace YrLawyerWeb.Controllers
 {
-    [Authorize]
     public class AuthController(YrLawyerContext context, JwtService jwtService) : Controller
     {
         private readonly YrLawyerContext _context = context;

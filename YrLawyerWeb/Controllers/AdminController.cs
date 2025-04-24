@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YrLawyerWeb.Models;
 
 namespace YrLawyerWeb.Controllers
 {
+    [Authorize]
     public class AdminController(YrLawyerContext context) : Controller
     {
         private readonly YrLawyerContext _context = context;

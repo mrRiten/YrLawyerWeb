@@ -12,7 +12,11 @@ namespace YrLawyerWeb.Controllers
 
         public IActionResult Index()
         {
-            var services = _context.Services.Take(4).ToList();
+            var services = _context.Services
+                .OrderByDescending(x => x.Id)
+                .Take(4)
+                .ToList();
+
             return View(services);
         }
 
