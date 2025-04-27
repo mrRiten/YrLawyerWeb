@@ -1,26 +1,200 @@
 ﻿@model List<User>
-<h2>Пользователи</h2>
 
-<form asp-action="CreateUser" method="post">
-    <input name="Email" placeholder="Email" />
-    <input name="Password" placeholder="Пароль" />
-    <button type="submit">Добавить</button>
-</form>
+<section class="users">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Пользователи</h2>
 
-<table>
-    <tr><th>ID</th><th>Email</th><th>Пароль</th><th></th></tr>
-    @foreach (var u in Model)
-    {
-        <tr>
-            <form asp-action="EditUser" method="post">
-            <td><input name="Id" value="@u.Id" readonly /></td>
-            <td><input name="Email" value="@u.Login" /></td>
-            <td><input name="Password" value="@u.Password" /></td>
-            <td>
-                <button type="submit">Сохранить</button>
-                <a href="/Admin/DeleteUser/@u.Id">Удалить</a>
-            </td>
+            <form asp-action="CreateUser" method="post" class="create-user-form">
+                <div class="form-group">
+                    <label class="label" for="Email">Email</label>
+                    <input name="Login" id="Email" placeholder="Email" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="Password">Пароль</label>
+                    <input name="Password" id="Password" placeholder="Пароль" class="input" type="password" required />
+                </div>
+                <button type="submit" class="submit-button">Добавить</button>
             </form>
-        </tr>
+
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Пароль</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model)
+                    {
+                        <tr>
+                            <form asp-action="EditUser" method="post" class="edit-user-form">
+                            <td>@u.Id<input type="hidden" name="Id" value="@u.Id" /></td>
+                            <td><input name="Email" value="@u.Login" class="input" required /></td>
+                            <td><input name="Password" value="@u.Password" type="password" class="input" required /></td>
+                            <td class="actions">
+                                <button type="submit" class="action-button">Сохранить</button>
+                                <a href="/Admin/DeleteUser/@u.Id" class="action-link">Удалить</a>
+                            </td>
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .users {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
-</table>
+
+        .users .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .users .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .create-user-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .input {
+        padding: 10px;
+        font-size: 18px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 48px;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .users-table {
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: collapse;
+    }
+
+        .users-table th,
+        .users-table td {
+            padding: 15px;
+            border: #132D65 2px solid;
+            text-align: left;
+            font-size: 16px;
+            vertical-align: middle;
+        }
+
+        .users-table th {
+            background-color: #132D65;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .users-table td {
+            background-color: #fff;
+        }
+
+    .edit-user-form {
+        display: contents;
+    }
+
+    .actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        min-height: 48px;
+        border: none; /* Убрана граница для столбца "Действия" */
+    }
+
+    .action-button {
+        font-size: 16px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .action-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: #d32f2f;
+        text-decoration: none;
+        border: #d32f2f 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-link:hover {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+</style>

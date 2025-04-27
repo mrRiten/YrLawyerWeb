@@ -1,14 +1,71 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Панель администратора";
 }
 
-<h2>Панель администратора</h2>
-<ul>
-    <li><a href="/Admin/Users">Пользователи</a></li>
-    <li><a href="/Admin/Clients">Клиенты</a></li>
-    <li><a href="/Admin/Services">Услуги</a></li>
-    <li><a href="/Admin/Feedbacks">Отзывы</a></li>
-    <li><a href="/Admin/ClientServices">Записи на услуги</a></li>
-</ul>
+<section class="admin-panel">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Панель администратора</h2>
+
+            <ul class="admin-links">
+                <li><a href="/Admin/Users" class="link">Пользователи</a></li>
+                <li><a href="/Admin/Clients" class="link">Клиенты</a></li>
+                <li><a href="/Admin/Services" class="link">Услуги</a></li>
+                <li><a href="/Admin/Feedbacks" class="link">Отзывы</a></li>
+                <li><a href="/Admin/ClientServices" class="link">Записи на услуги</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<style>
+    .admin-panel {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+        .admin-panel .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .admin-panel .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .admin-links {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+        .admin-links li {
+            text-align: center;
+        }
+
+        .admin-links .link {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
+            border: #132D65 4px solid;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .admin-links .link:hover {
+                background-color: #132D65;
+                color: #fff;
+            }
+</style>

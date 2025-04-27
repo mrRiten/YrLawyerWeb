@@ -2,21 +2,105 @@
     ViewData["Title"] = "Вход в админ-панель";
 }
 
-<h2>Вход</h2>
+<section class="login">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Вход в админ-панель</h2>
 
-<form asp-action="Login" method="post">
-    <div>
-        <label>Логин:</label>
-        <input name="login" type="text" />
-    </div>
-    <div>
-        <label>Пароль:</label>
-        <input name="password" type="password" />
-    </div>
-    <button type="submit">Войти</button>
-</form>
+            <form asp-action="Login" method="post" class="login-form">
+                <div class="form-group">
+                    <label class="label" for="login">Логин</label>
+                    <input name="login" id="login" type="text" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="password">Пароль</label>
+                    <input name="password" id="password" type="password" class="input" required />
+                </div>
+                <button type="submit" class="submit-button">Войти</button>
+            </form>
 
-@if (ViewBag.Error != null)
-{
-    <p style="color:red">@ViewBag.Error</p>
-}
+            @if (ViewBag.Error != null)
+            {
+                <p class="error-message">@ViewBag.Error</p>
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .login {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+        .login .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .login .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'KoPub Batang';
+    }
+
+    .input {
+        padding: 10px;
+        font-size: 16px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        font-family: 'KoPub Batang';
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        font-family: 'KoPub Batang';
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .error-message {
+        font-size: 16px;
+        font-family: 'KoPub Batang';
+        color: #d32f2f;
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>

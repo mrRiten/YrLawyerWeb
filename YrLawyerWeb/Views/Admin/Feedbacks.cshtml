@@ -1,30 +1,225 @@
 ﻿@model List<Feedback>
-<h2>Отзывы</h2>
 
-<form asp-action="CreateFeedback" method="post">
-    <input name="ClientId" placeholder="ID клиента" />
-    <input name="ServiceId" placeholder="ID услуги" />
-    <input name="Text" placeholder="Текст отзыва" />
-    <input name="Rating" type="number" min="1" max="5" />
-    <button type="submit">Добавить</button>
-</form>
+<section class="feedbacks">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Отзывы</h2>
 
-<table>
-    <tr><th>Клиент</th><th>Услуга</th><th>Текст</th><th>Оценка</th><th></th></tr>
-    @foreach (var f in Model)
-    {
-        <tr>
-            <form asp-action="EditFeedback" method="post">
-                <input type="hidden" name="Id" value="@f.Id" />
-            <td><input name="ClientId" value="@f.ClientId" /></td>
-            <td><input name="ServiceId" value="@f.ServiceId" /></td>
-            <td><input name="Text" value="@f.Message" /></td>
-            <td><input name="Rating" type="number" value="@f.Stars" min="1" max="5" /></td>
-            <td>
-                <button type="submit">Сохранить</button>
-                <a href="/Admin/DeleteFeedback/@f.Id">Удалить</a>
-            </td>
+            <form asp-action="CreateFeedback" method="post" class="create-feedback-form">
+                <div class="form-group">
+                    <label class="label" for="ClientId">ID клиента</label>
+                    <input name="ClientId" id="ClientId" placeholder="ID клиента" class="input" type="number" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="ServiceId">ID услуги</label>
+                    <input name="ServiceId" id="ServiceId" placeholder="ID услуги" class="input" type="number" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="Text">Текст отзыва</label>
+                    <textarea name="Message" id="Text" placeholder="Текст отзыва" class="text-input" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="label" for="Rating">Оценка (1-5)</label>
+                    <input name="Stars" id="Rating" type="number" min="1" max="5" class="input" required />
+                </div>
+                <button type="submit" class="submit-button">Добавить</button>
             </form>
-        </tr>
+
+            <table class="feedbacks-table">
+                <thead>
+                    <tr>
+                        <th>Клиент</th>
+                        <th>Услуга</th>
+                        <th>Текст</th>
+                        <th>Оценка</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var f in Model)
+                    {
+                        <tr>
+                            <form asp-action="EditFeedback" method="post" class="edit-feedback-form">
+                                <input type="hidden" name="Id" value="@f.Id" />
+                            <td><input name="ClientId" value="@f.ClientId" class="input" type="number" required /></td>
+                            <td><input name="ServiceId" value="@f.ServiceId" class="input" type="number" required /></td>
+                            <td><textarea name="Message" class="text-input" required>@f.Message</textarea></td>
+                            <td><input name="Stars" type="number" value="@f.Stars" min="1" max="5" class="input" required /></td>
+                            <td class="actions">
+                                <button type="submit" class="action-button">Сохранить</button>
+                                <a href="/Admin/DeleteFeedback/@f.Id" class="action-link">Удалить</a>
+                            </td>
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .feedbacks {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
-</table>
+
+        .feedbacks .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .feedbacks .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .create-feedback-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .input {
+        padding: 10px;
+        font-size: 18px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 48px;
+    }
+
+    .text-input {
+        padding: 15px;
+        font-size: 18px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 100px; /* Увеличена высота для текста */
+        max-height: 200px; /* Увеличена высота для текста */
+        resize: vertical; /* Позволяет изменять высоту, но не ширину */
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .feedbacks-table {
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: collapse;
+    }
+
+        .feedbacks-table th,
+        .feedbacks-table td {
+            padding: 15px;
+            border: #132D65 2px solid;
+            text-align: left;
+            font-size: 16px;
+            vertical-align: middle;
+        }
+
+        .feedbacks-table th {
+            background-color: #132D65;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .feedbacks-table td {
+            background-color: #fff;
+        }
+
+    .edit-feedback-form {
+        display: contents;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column; /* Кнопки друг под другом */
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        min-height: 48px;
+        border: none !important; /* Убрана граница для столбца "Действия" */
+    }
+
+    .action-button {
+        font-size: 16px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .action-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: #d32f2f;
+        text-decoration: none;
+        border: #d32f2f 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-link:hover {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+</style>

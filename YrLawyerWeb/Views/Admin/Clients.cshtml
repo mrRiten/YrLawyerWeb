@@ -1,30 +1,232 @@
 ﻿@model List<Client>
-<h2>Клиенты</h2>
 
-<form asp-action="CreateClient" method="post">
-    <input name="LastName" placeholder="Фамилия" />
-    <input name="FirstName" placeholder="Имя" />
-    <input name="MiddleName" placeholder="Отчество" />
-    <input name="Email" placeholder="Email" />
-    <input name="Phone" placeholder="Телефон" />
-    <button type="submit">Добавить</button>
-</form>
+<section class="clients">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Клиенты</h2>
 
-<table>
-    <tr><th>ФИО</th><th>Email</th><th>Телефон</th><th></th></tr>
-    @foreach (var c in Model)
-    {
-        <tr>
-            <form asp-action="EditClient" method="post">
-                <input type="hidden" name="Id" value="@c.Id" />
-            <td><input name="LastName" value="@c.LastName" /> <input name="FirstName" value="@c.FirstName" /> <input name="MiddleName" value="@c.MiddleName" /></td>
-            <td><input name="Email" value="@c.Email" /></td>
-            <td><input name="Phone" value="@c.Phone" /></td>
-            <td>
-                <button type="submit">Сохранить</button>
-                <a href="/Admin/DeleteClient/@c.Id">Удалить</a>
-            </td>
+            <form asp-action="CreateClient" method="post" class="create-client-form">
+                <div class="form-group">
+                    <label class="label" for="LastName">Фамилия</label>
+                    <input name="LastName" id="LastName" placeholder="Фамилия" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="FirstName">Имя</label>
+                    <input name="FirstName" id="FirstName" placeholder="Имя" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="MiddleName">Отчество</label>
+                    <input name="MiddleName" id="MiddleName" placeholder="Отчество" class="input" />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="Email">Email</label>
+                    <input name="Email" id="Email" placeholder="Email" class="input" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="Phone">Телефон</label>
+                    <input name="Phone" id="Phone" placeholder="Телефон" class="input" required />
+                </div>
+                <button type="submit" class="submit-button">Добавить</button>
             </form>
-        </tr>
+
+            <table class="clients-table">
+                <thead>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Email</th>
+                        <th>Телефон</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <form asp-action="EditClient" method="post" class="edit-client-form">
+                                <input type="hidden" name="Id" value="@c.Id" />
+                            <td>
+                                <div class="fio-group">
+                                    <input name="LastName" value="@c.LastName" class="input" required />
+                                    <input name="FirstName" value="@c.FirstName" class="input" required />
+                                    <input name="MiddleName" value="@c.MiddleName" class="input" />
+                                </div>
+                            </td>
+                            <td><input name="Email" value="@c.Email" class="input" required /></td>
+                            <td><input name="Phone" value="@c.Phone" class="input" required /></td>
+                            <td class="actions">
+                                <button type="submit" class="action-button">Сохранить</button>
+                                <a href="/Admin/DeleteClient/@c.Id" class="action-link">Удалить</a>
+                            </td>
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .clients {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
-</table>
+
+        .clients .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .clients .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .create-client-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'KoPub Batang';
+    }
+
+    .input {
+        padding: 10px;
+        font-size: 18px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        font-family: 'KoPub Batang';
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 48px;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        font-family: 'KoPub Batang';
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .clients-table {
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: collapse;
+        font-family: 'KoPub Batang';
+    }
+
+        .clients-table th,
+        .clients-table td {
+            padding: 15px;
+            border: #132D65 2px solid;
+            text-align: left;
+            font-size: 16px;
+            vertical-align: middle;
+        }
+
+        .clients-table th {
+            background-color: #132D65;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .clients-table td {
+            background-color: #fff;
+        }
+
+    .edit-client-form {
+        display: contents;
+    }
+
+    .fio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column; /* Кнопки друг под другом */
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        min-height: 48px;
+        border: none !important; /* Убрана граница для столбца "Действия" */
+    }
+
+    .action-button {
+        font-size: 16px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        background-color: #fff;
+        cursor: pointer;
+        font-family: 'KoPub Batang';
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .action-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: #d32f2f;
+        text-decoration: none;
+        border: #d32f2f 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        font-family: 'KoPub Batang';
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-link:hover {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+</style>
