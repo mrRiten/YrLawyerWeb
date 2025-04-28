@@ -94,20 +94,49 @@ namespace YrLawyerWeb.Controllers
         public IActionResult CreateService() => View();
 
         [HttpPost]
-        public async Task<IActionResult> CreateService(Service service)
+        public async Task<IActionResult> CreateService(Service service, IFormFile ImageFile)
         {
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+                var path = Path.Combine("wwwroot/uploads", fileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                }
+                service.Img = "/uploads/" + fileName;
+            }
+
             _context.Services.Add(service);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Services));
         }
 
+
         public async Task<IActionResult> EditService(int id) =>
             View(await _context.Services.FindAsync(id));
 
         [HttpPost]
-        public async Task<IActionResult> EditService(Service service)
+        public async Task<IActionResult> EditService(Service service, IFormFile ImageFile)
         {
-            _context.Services.Update(service);
+            var existing = await _context.Services.FindAsync(service.Id);
+            if (existing == null) return NotFound();
+
+            existing.Title = service.Title;
+            existing.Description = service.Description;
+
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+                var path = Path.Combine("wwwroot/uploads", fileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                }
+                existing.Img = "/uploads/" + fileName;
+            }
+
+            _context.Services.Update(existing);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Services));
         }

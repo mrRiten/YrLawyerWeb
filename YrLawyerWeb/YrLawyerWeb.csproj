@@ -17,4 +17,8 @@
     <PackageReference Include="Resend" Version="0.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

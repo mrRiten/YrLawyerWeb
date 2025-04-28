@@ -95,7 +95,7 @@ namespace YrLawyerWeb.Controllers
         public IActionResult AddFeedback(int serviceId, string email, int stars, string message)
         {
             var client = _context.Clients.FirstOrDefault(c => c.Email == email);
-            if (client == null) return BadRequest("Клиент с такой почтой не найден");
+            if (client == null) return RedirectToAction("AllFeedbacks");
 
             var feedback = new Feedback
             {
