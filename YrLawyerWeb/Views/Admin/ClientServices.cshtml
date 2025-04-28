@@ -1,28 +1,205 @@
 ﻿@model List<ClientService>
-<h2>Записи на услуги</h2>
 
-<form asp-action="CreateClientService" method="post">
-    <input name="ClientId" placeholder="ID клиента" />
-    <input name="ServiceId" placeholder="ID услуги" />
-    <input name="DateRequested" type="date" />
-    <button type="submit">Добавить</button>
-</form>
+<section class="client-services">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="title">Записи на услуги</h2>
 
-<table>
-    <tr><th>Клиент</th><th>Услуга</th><th>Дата</th><th></th></tr>
-    @foreach (var cs in Model)
-    {
-        <tr>
-            <form asp-action="EditClientService" method="post">
-                <input type="hidden" name="Id" value="@cs.Id" />
-            <td><input name="ClientId" value="@cs.ClientId" /></td>
-            <td><input name="ServiceId" value="@cs.ServiceId" /></td>
-            <td><input name="DateRequested" type="date" value="@cs.DateRequested.ToString("yyyy-MM-dd")" /></td>
-            <td>
-                <button type="submit">Сохранить</button>
-                <a href="/Admin/DeleteClientService/@cs.Id">Удалить</a>
-            </td>
+            <form asp-action="CreateClientService" method="post" class="create-client-service-form">
+                <div class="form-group">
+                    <label class="label" for="ClientId">ID клиента</label>
+                    <input name="ClientId" id="ClientId" placeholder="ID клиента" class="input" type="number" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="ServiceId">ID услуги</label>
+                    <input name="ServiceId" id="ServiceId" placeholder="ID услуги" class="input" type="number" required />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="DateRequested">Дата</label>
+                    <input name="DateRequested" id="DateRequested" type="date" class="input" required />
+                </div>
+                <button type="submit" class="submit-button">Добавить</button>
             </form>
-        </tr>
+
+            <table class="client-services-table">
+                <thead>
+                    <tr>
+                        <th>Клиент</th>
+                        <th>Услуга</th>
+                        <th>Дата</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cs in Model)
+                    {
+                        <tr>
+                            <form asp-action="EditClientService" method="post" class="edit-client-service-form">
+                                <input type="hidden" name="Id" value="@cs.Id" />
+                            <td><input name="ClientId" value="@cs.ClientId" class="input" type="number" required /></td>
+                            <td><input name="ServiceId" value="@cs.ServiceId" class="input" type="number" required /></td>
+                            <td><input name="DateRequested" type="date" value="@cs.DateRequested.ToString("yyyy-MM-dd")" class="input" required /></td>
+                            <td class="actions">
+                                <button type="submit" class="action-button">Сохранить</button>
+                                <a href="/Admin/DeleteClientService/@cs.Id" class="action-link">Удалить</a>
+                            </td>
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .client-services {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
-</table>
+
+        .client-services .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .client-services .title {
+            font-size: 24px;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
+        }
+
+    .create-client-service-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .label {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .input {
+        padding: 10px;
+        font-size: 18px;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 48px;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 20px;
+        background-color: #fff;
+        cursor: pointer;
+        align-self: center;
+        transition: background-color 0.3s;
+    }
+
+        .submit-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .client-services-table {
+        width: 100%;
+        max-width: 1000px;
+        border-collapse: collapse;
+    }
+
+        .client-services-table th,
+        .client-services-table td {
+            padding: 15px;
+            border: #132D65 2px solid;
+            text-align: left;
+            font-size: 16px;
+            vertical-align: middle;
+        }
+
+        .client-services-table th {
+            background-color: #132D65;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .client-services-table td {
+            background-color: #fff;
+        }
+
+    .edit-client-service-form {
+        display: contents;
+    }
+
+    .actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        min-height: 48px;
+        border: none !important; /* Убрана граница для столбца "Действия" */
+    }
+
+    .action-button {
+        font-size: 16px;
+        font-weight: 600;
+        border: #132D65 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-button:hover {
+            background-color: #132D65;
+            color: #fff;
+        }
+
+    .action-link {
+        font-size: 16px;
+        font-weight: 600;
+        color: #d32f2f;
+        text-decoration: none;
+        border: #d32f2f 4px solid;
+        border-radius: 20px;
+        padding: 10px 15px;
+        transition: background-color 0.3s;
+        min-width: 100px;
+        text-align: center;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .action-link:hover {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+</style>
