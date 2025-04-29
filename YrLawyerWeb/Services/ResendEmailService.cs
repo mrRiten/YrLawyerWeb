@@ -12,7 +12,7 @@ namespace YrLawyerWeb.Services
         private readonly ILogger<ResendEmailService> _logger = logger;
         public async Task Send(string toEmail, string title, string htmlBody)
         {
-            IResend resend = ResendClient.Create("re_7V7eD3Kt_6rQ1F6FaB72q4GPoSTKksvab");
+            IResend resend = ResendClient.Create("re_QQwH8BCH_Dd9BNwKVYUhHaW9ZDvU7Q1EC");
 
             var fromEmail = "YrLawyer <onboarding@resend.dev>";
 
