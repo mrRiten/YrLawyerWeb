@@ -21,7 +21,6 @@
 <section class="services">
     <div class="container">
         <div class="wrapper">
-
             <h2 class="title">Наши услуги</h2>
 
             <div class="cards">
@@ -35,7 +34,6 @@
                     </div>
                 }
             </div>
-        
 
             <a class="link" href="@Url.Action("Index", "Services")">Записаться</a>
         </div>
@@ -46,7 +44,6 @@
     <div class="container">
         <div class="wrapper">
             <h2 class="title">Клиентам</h2>
-
             <p class="text">
                 Наша компания предлагает услуги различным категориям клиентов:
                 Частные лица: Получите помощь в решении личных юридических вопросов, таких как развод, наследство, трудовые споры и иммиграционные вопросы.
@@ -56,89 +53,138 @@
         </div>
     </div>
 </section>
+
 <style>
     .general {
         margin-top: 50px;
+        margin-bottom: 30px;
     }
 
         .general .title {
             font-size: 32px;
             text-align: center;
             font-weight: 600;
+            font-family: 'KoPub Batang';
         }
 
         .general .text {
-            margin-top: 10px;
-            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
             font-weight: 600;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
     .services {
         margin-top: 30px;
+        margin-bottom: 30px;
     }
 
         .services .wrapper {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+            align-items: center;
         }
 
-        .services .title
-        {
+        .services .title {
             font-size: 24px;
             text-align: center;
             font-weight: 600;
-        }
-
-        .services .cards {
-            margin-top: 5px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            font-size: 16px;
             font-family: 'KoPub Batang';
         }
 
+        .services .cards {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .services .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border: #132D65 2px solid;
+            border-radius: 20px;
+            width: 310px;
+        }
+
         .services .img-wrapper {
-            max-width: 310px;
+            width: 310px;
+            height: 207px;
+            flex-shrink: 0;
         }
 
         .services .img {
+            width: 310px;
+            height: 207px;
+            object-fit: cover;
             border: #132D65 4px solid;
             border-radius: 20px;
         }
 
-        .services .card-title{
+        .services .card-title {
             margin-top: 15px;
+            font-size: 20px;
             text-align: center;
             font-weight: 600;
-            max-width: 310px;
+            width: 100%;
         }
 
-        .services .link{
-            font-size: 24px;
+        .services .link {
+            font-size: 18px;
+            font-weight: 600;
             border: #132D65 4px solid;
             border-radius: 20px;
-            padding: 5px 10px 10px 10px;
-            align-self: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #132D65;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            margin-top: 20px;
+            min-width: 200px;
         }
 
+            .services .link:hover {
+                background-color: #132D65;
+                color: #fff;
+            }
 
-    .clients{
+    .clients {
         margin-top: 30px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
+
+        .clients .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
 
         .clients .title {
             font-size: 24px;
             text-align: center;
+            font-weight: 600;
+            font-family: 'KoPub Batang';
         }
 
         .clients .text {
-            margin-top: 5px;
+            margin-top: 10px;
             font-size: 18px;
             font-weight: 500;
+            max-width: 800px;
+            text-align: center;
         }
+
 </style>

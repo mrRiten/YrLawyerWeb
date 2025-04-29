@@ -7,7 +7,6 @@
 <section class="services">
     <div class="container">
         <div class="wrapper">
-
             <h2 class="title">Наши услуги</h2>
 
             <div class="cards">
@@ -15,7 +14,7 @@
                 {
                     <div class="card">
                         <div class="img-wrapper">
-                            <img class="img" src="~/img/@item.Img" alt="@item.Title" />
+                            <img class="img" src="@item.Img" alt="@item.Title" />
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">@item.Title</h3>
@@ -35,13 +34,14 @@
 <style>
     .services {
         margin-top: 30px;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
     }
 
         .services .wrapper {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+            align-items: center;
         }
 
         .services .title {
@@ -52,38 +52,41 @@
         }
 
         .services .cards {
-            margin-top: 5px;
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
         }
 
         .services .card {
             display: flex;
             gap: 20px;
-        }
-
-        .services .card-content{
-            display: flex;
-            flex-direction: column;
-
-        }
-
-        .services .img-wrapper {
-            min-width: 360px;
-        }
-
-
-        .services .img {
-            border: #132D65 4px solid;
+            background-color: #fff;
+            padding: 20px;
+            border: #132D65 2px solid;
             border-radius: 20px;
         }
 
-        .services .desc {
-            margin-top: 10px;
-            font-weight: 600;
-            font-size: 18px;
+        .services .card-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .services .img-wrapper {
+            width: 360px;
+            height: 240px;
+            flex-shrink: 0;
+        }
+
+        .services .img {
+            width: 360px;
+            height: 240px;
+            object-fit: cover; /* Обрезает изображение для заполнения контейнера */
+            border: #132D65 4px solid;
+            border-radius: 20px;
         }
 
         .services .card-title {
@@ -93,18 +96,37 @@
             font-weight: 600;
         }
 
-        .services .card-links{
+        .services .desc {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .services .card-links {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             margin-top: 20px;
         }
 
         .services .link {
             font-size: 16px;
+            font-weight: 600;
             border: #132D65 4px solid;
             border-radius: 20px;
-            padding: 5px 10px 10px 10px;
-            align-self: start;
-            font-weight: 600;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #132D65;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
         }
+
+            .services .link:hover {
+                background-color: #132D65;
+                color: #fff;
+            }
+
+    
 </style>
